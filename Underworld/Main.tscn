@@ -2,13 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://deiecm7n4otm1" path="res://Background/Big-Hell-Map-1024x1024(cropped).jpg" id="1_2qqhq"]
 [ext_resource type="PackedScene" uid="uid://b8d5cn8t566tk" path="res://Player/player.tscn" id="2_iawxq"]
-[ext_resource type="PackedScene" uid="uid://cgxa3hc5spt7k" path="res://imp.tscn" id="3_mmtg1"]
+[ext_resource type="PackedScene" uid="uid://cgxa3hc5spt7k" path="res://Enemies/imp.tscn" id="3_mmtg1"]
 
 [node name="Node2D" type="Sprite2D"]
 position = Vector2(577, 324.75)
 scale = Vector2(1.12891, 0.689673)
 texture = ExtResource("1_2qqhq")
+metadata/_edit_lock_ = true
 
 [node name="Imp" parent="." instance=ExtResource("3_mmtg1")]
+position = Vector2(403.929, -11.2372)
 
 [node name="Player" parent="." instance=ExtResource("2_iawxq")]
+position = Vector2(-131.986, -243.231)

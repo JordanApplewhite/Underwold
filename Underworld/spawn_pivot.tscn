@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3adhganel5dy"]
+
+[ext_resource type="Script" path="res://spawn_pivot.gd" id="1_ylrlg"]
+
+[node name="Spawn pivot" type="Node2D"]
+script = ExtResource("1_ylrlg")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(1179, 3)
+
+[node name="Timer" type="Timer" parent="Marker2D"]
