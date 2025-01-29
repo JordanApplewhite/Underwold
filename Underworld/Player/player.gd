@@ -5,10 +5,11 @@ extends CharacterBody2D
 
 @export var health = 100
 
-
-@export var bullet_path = preload("res://Bullet.tscn")
+@export var bullet= preload("res://Bullet.tscn")
 
 var corrupt_score = 0
+
+var mouse_pos = Vector2.ZERO
 
 var curr_state = "idle"
 
@@ -29,16 +30,37 @@ pass
 
 func _process(delta: float) -> void:
 	
-	
-	
 	pass
-
-
+	
+	
+#Allows player to shoot 
+func shoot():
+	if Input.is_action_just_pressed("shoot"):
+		var new_bullet = bullet.instantiate()
+		var target_vec = mouse_pos-global_position
+		target_vec = target_vec.normalized()
+		new_bullet.direction = target_vec
+		new_bullet.global_position = global_position
+		new_bullet.look_at(mouse_pos)
+		new_bullet.rotation_degrees+=90
+		get_tree().get_root().add_child(new_bullet)
+		target_vec= target_vec.normalized()
+		
+	pass
+	
+	
+#	Creates the mouse position for the bullet
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed():
+		
+		mouse_pos= event.position
+		
+		shoot()
 
 func _on_corruption_timer_timeout() -> void:
 	if corrupt_score <= 100:
 		corrupt_score += 3
-		print(corrupt_score)
+		
 	else: corrupt_score >= 100
 	corrupt_score += 0
 

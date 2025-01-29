@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8q1j"]
 size = Vector2(20, 3.19303)
 
-[node name="Bullet" type="CharacterBody2D" groups=["bullet"]]
+[node name="Bullet" type="Area2D" groups=["bullet"]]
 position = Vector2(454, 212)
 script = ExtResource("2_xpfji")
 

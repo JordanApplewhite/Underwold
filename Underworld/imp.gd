@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+@export var health = 5
 @export var speed= 100
 @export var knockback: float = 300
 
@@ -15,6 +15,7 @@ func _ready() -> void:
 pass
 
 
+
 func _process(delta: float) -> void:
 #	moves to the player
 	if player:
@@ -24,5 +25,17 @@ func _process(delta: float) -> void:
 pass
 
 
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	
+	if area. is_in_group("bullet"):
+		health-=2
+		area.queue_free()
+		print(health)
+		
+		if health <= 0:
+			queue_free()
+		
+	pass # Replace with function body.
 
 	
