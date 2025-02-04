@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dotwo02r1414u"]
+[gd_scene load_steps=6 format=3 uid="uid://dotwo02r1414u"]
 
 [ext_resource type="Texture2D" uid="uid://deiecm7n4otm1" path="res://Background/Big-Hell-Map-1024x1024(cropped).jpg" id="1_2qqhq"]
 [ext_resource type="PackedScene" uid="uid://b8d5cn8t566tk" path="res://Player/player.tscn" id="2_iawxq"]
 [ext_resource type="PackedScene" uid="uid://cgxa3hc5spt7k" path="res://Enemies/imp.tscn" id="3_mmtg1"]
+[ext_resource type="PackedScene" uid="uid://c3adhganel5dy" path="res://spawn_pivot.tscn" id="4_7dwcn"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jqch7"]
+vertices = PackedVector2Array(1627.82, -1638.3, 1616.38, 1543.15, -1914.81, 1501.33, -1896.32, -1662.82)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1906.26, -1672.89, -1924.87, 1511.22, 1626.35, 1553.27, 1637.86, -1648.24)])
 
 [node name="Node2D" type="Sprite2D"]
 position = Vector2(577, 324.75)
@@ -15,3 +21,9 @@ position = Vector2(403.929, -11.2372)
 
 [node name="Player" parent="." instance=ExtResource("2_iawxq")]
 position = Vector2(-131.986, -243.231)
+
+[node name="Spawn pivot" parent="." instance=ExtResource("4_7dwcn")]
+position = Vector2(6.20068, 9.06227)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_jqch7")

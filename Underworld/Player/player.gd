@@ -38,14 +38,16 @@ func shoot():
 	if Input.is_action_just_pressed("shoot"):
 		var new_bullet = bullet.instantiate()
 		var target_vec = mouse_pos-global_position
+		
 		target_vec = target_vec.normalized()
+		
 		new_bullet.direction = target_vec
 		new_bullet.global_position = global_position
 		new_bullet.look_at(mouse_pos)
 		new_bullet.rotation_degrees+=90
 		get_tree().get_root().add_child(new_bullet)
 		target_vec= target_vec.normalized()
-		
+		$Pew.play()
 	pass
 	
 	

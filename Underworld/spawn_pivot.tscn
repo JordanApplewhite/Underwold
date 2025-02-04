@@ -6,6 +6,9 @@
 script = ExtResource("1_ylrlg")
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(1179, 3)
+position = Vector2(658, 0)
 
-[node name="Timer" type="Timer" parent="Marker2D"]
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

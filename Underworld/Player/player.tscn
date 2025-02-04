@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b8d5cn8t566tk"]
+[gd_scene load_steps=42 format=3 uid="uid://b8d5cn8t566tk"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_ihri8"]
 [ext_resource type="Texture2D" uid="uid://164bi84gmsdo" path="res://Player/player sprite sheet.png" id="2_0ge0v"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://addons/imjp94.yafsm/src/states/State.gd" id="5_wgvyy"]
 [ext_resource type="Script" path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" id="6_o76cn"]
 [ext_resource type="Script" path="res://addons/imjp94.yafsm/src/conditions/FloatCondition.gd" id="7_tl7v2"]
+[ext_resource type="AudioStream" uid="uid://cvpq5iutcs6dw" path="res://Player/laser-shot-ingame-230500.mp3" id="8_q2djt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1sq2n"]
 size = Vector2(61, 97)
@@ -256,6 +257,12 @@ transitions = {
 }
 name = ""
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8k5md"]
+random_pitch = 1.5
+random_volume_offset_db = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("8_q2djt")
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_ihri8")
 
@@ -278,5 +285,8 @@ autostart = true
 [node name="StateMachinePlayer" type="Node" parent="."]
 script = ExtResource("3_p4iqs")
 state_machine = SubResource("Resource_yqqge")
+
+[node name="Pew" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_8k5md")
 
 [connection signal="timeout" from="Corruption Timer" to="." method="_on_corruption_timer_timeout"]
