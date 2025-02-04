@@ -280,6 +280,7 @@ animation = &"walk left"
 position = Vector2(-60, -2.75)
 
 [node name="Corruption Timer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 
 [node name="StateMachinePlayer" type="Node" parent="."]

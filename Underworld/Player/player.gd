@@ -14,7 +14,10 @@ var mouse_pos = Vector2.ZERO
 var curr_state = "idle"
 
 func _ready() -> void:
+	
 	Global.player = self
+pass
+
 
 func get_input(): 
 	var input_direction = Input.get_vector("left", "right", "up","down")
@@ -25,11 +28,12 @@ pass
 func _physics_process(delta):
 	get_input()
 	move_and_slide()
+	
 	#shoot()
 pass
 
 func _process(delta: float) -> void:
-	
+	slow()
 	pass
 	
 	
@@ -65,9 +69,20 @@ func _on_corruption_timer_timeout() -> void:
 		
 	else: corrupt_score >= 100
 	corrupt_score += 0
-
+	print (corrupt_score)
 	pass # Replace with function body.
 	
+func slow():
+	if corrupt_score >= 50:
+		speed = 225
+	pass
+
+func bigman():
+	if corrupt_score >= 50:
+		$Sprite2D.scale + 4
+		
+pass
+
 	
 func death():
 	if health >=0:

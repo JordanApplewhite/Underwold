@@ -30,7 +30,8 @@ func _process(delta: float) -> void:
 		var playerpos= player.global_position
 		#
 #		This makes the imp face the player
-		look_at(playerpos)
+		$Sprite2D.look_at(playerpos)
+		
 		
 		
 		
