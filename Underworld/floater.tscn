@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://bu4vcjh78hacb"]
+
+[ext_resource type="Script" path="res://floater.gd" id="1_6a7j5"]
+[ext_resource type="Texture2D" uid="uid://c5mep3p8hq01g" path="res://images-removebg-preview.png" id="1_gar0m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qq37f"]
+size = Vector2(40.3828, 36.6875)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_76gsw"]
+radius = 22.3607
+
+[node name="Floater" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 6
+script = ExtResource("1_6a7j5")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qq37f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, 9.53674e-07)
+scale = Vector2(0.174479, 0.174479)
+texture = ExtResource("1_gar0m")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CircleShape2D_76gsw")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 20.0
+max_neighbors = 20
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0.339536, 1, 0.870956, 1)
+
+[node name="healthbar" type="ProgressBar" parent="."]
+offset_left = -4.0
+offset_top = 11.0
+offset_right = 60.0
+offset_bottom = 38.0
+max_value = 10.0
+
+[node name="Fire rate" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="Fire rate" to="." method="_on_fire_rate_timeout"]

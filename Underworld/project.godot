@@ -28,6 +28,8 @@ enabled=PackedStringArray("res://addons/imjp94.yafsm/plugin.cfg")
 player=""
 bullet=""
 imp=""
+floater=""
+"floater bullet"=""
 
 [input]
 

@@ -7,11 +7,13 @@ extends CharacterBody2D
 
 @export var bullet= preload("res://Bullet.tscn")
 
-var corrupt_score = 0
+@export var corrupt_score = 0
 
 var mouse_pos = Vector2.ZERO
 
 var curr_state = "idle"
+
+var decaying = false
 
 func _ready() -> void:
 	
@@ -33,6 +35,7 @@ func _physics_process(delta):
 pass
 
 func _process(delta: float) -> void:
+	decay()
 	slow()
 	pass
 	
@@ -69,7 +72,6 @@ func _on_corruption_timer_timeout() -> void:
 		
 	else: corrupt_score >= 100
 	corrupt_score += 0
-	print (corrupt_score)
 	pass # Replace with function body.
 	
 func slow():
@@ -77,10 +79,13 @@ func slow():
 		speed = 225
 	pass
 
-func bigman():
-	if corrupt_score >= 50:
-		$Sprite2D.scale + 4
+func decay():
+	if corrupt_score >= 100:             
+		#$"Decay timer".start()
+		decaying=true
 		
+	else: 
+		decaying= false
 pass
 
 	
@@ -88,3 +93,20 @@ func death():
 	if health >=0:
 		queue_free()
 pass
+
+
+func _on_decay_timer_timeout() -> void:
+	if decaying: 
+		health -= 2
+	
+	pass # Replace with function body.
+
+
+
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area. is_in_group("floater bullet"):
+		health-=2
+		area.queue_free()
+	pass # Replace with function body.

@@ -1,14 +1,16 @@
 extends CharacterBody2D
 
-@export var health = 5
-@export var speed = 100
+@export var health = 10
+@export var speed = 50
 var accel = 7
 @export var knockback: float = 300
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
-@onready var health_bar: ProgressBar = $HealthBar
+@onready var healthbar: ProgressBar = $healthbar
+
 
 #Referance to player
 var player = preload("res://Player/player.tscn")
+var bullet = preload("res://floater_bullet.tscn")
 
 
 
@@ -19,12 +21,13 @@ func _ready() -> void:
 	#	Gets the player group 
 	player = get_tree().get_nodes_in_group("player")[0]
 #	Increase imp count
-	Global.curr_imp += 1
+	Global.curr_floater += 1
 pass
 
 
 
 func _process(delta: float) -> void:
+	
 #	moves to the player
 	if player:
 	
@@ -32,11 +35,8 @@ func _process(delta: float) -> void:
 		#
 #		This makes the imp face the player
 		$Sprite2D.look_at(playerpos)
-		health_bar.value = health
-		
-		
-		
-		
+		healthbar.value = health
+
 
 pass
 
@@ -64,19 +64,40 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	move_and_slide()
 	pass # Replace with function body.
 
-func _on_hitbox_area_entered(area: Area2D) -> void:
-	
-#	This allows for the imp to be damaged by the player
-	if area. is_in_group("bullet"):
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("bullet"):
 		health-=2
 		area.queue_free()
 		
 		
 		if health <= 0:
-			Global.curr_imp -= 1
+			Global.curr_floater -= 1
 			queue_free()
 			
-		
-	pass # Replace with function body.
-
 	
+	pass # Replace with function body.
+	
+
+
+func shoot():
+	if player:
+		var new_bullet = bullet.instantiate()
+		var target_vec = player.global_position-global_position
+		
+		target_vec = target_vec.normalized()
+		
+		new_bullet.direction = target_vec
+		new_bullet.global_position = global_position
+		new_bullet.look_at(player.global_position)
+		new_bullet.rotation_degrees+=0
+		get_tree().get_root().add_child(new_bullet)
+		target_vec= target_vec.normalized()
+		
+	
+	
+
+
+func _on_fire_rate_timeout() -> void:
+	shoot()
+	pass # Replace with function body.

@@ -39,8 +39,8 @@ shape = SubResource("CircleShape2D_2edoy")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
-radius = 25.0
-max_neighbors = 11
+radius = 40.0
+max_neighbors = 20
 debug_enabled = true
 
 [node name="HealthBar" type="ProgressBar" parent="."]
@@ -48,6 +48,7 @@ offset_left = -26.0
 offset_top = 20.0
 offset_right = 31.0
 offset_bottom = 47.0
+max_value = 5.0
 fill_mode = 1
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
