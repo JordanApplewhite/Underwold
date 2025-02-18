@@ -35,9 +35,18 @@ func _physics_process(delta):
 pass
 
 func _process(delta: float) -> void:
+	#match curr_state:
+		#"death":
+			#death()
+		
 	decay()
 	slow()
+	death()
 	pass
+	
+	
+
+	
 	
 	
 #Allows player to shoot 
@@ -92,6 +101,7 @@ pass
 func death():
 	if health >=0:
 		queue_free()
+		Global.player_active = false
 pass
 
 
@@ -101,12 +111,14 @@ func _on_decay_timer_timeout() -> void:
 	
 	pass # Replace with function body.
 
-
-
-
-
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area. is_in_group("floater bullet"):
 		health-=2
 		area.queue_free()
+	
+	pass # Replace with function body.
+
+
+func _on_state_machine_player_updated(state: Variant, delta: Variant) -> void:
+	curr_state = state
 	pass # Replace with function body.

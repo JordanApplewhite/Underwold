@@ -47,4 +47,5 @@ wait_time = 3.0
 autostart = true
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="Fire rate" to="." method="_on_fire_rate_timeout"]

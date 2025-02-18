@@ -7,6 +7,8 @@ var accel = 7
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 @onready var health_bar: ProgressBar = $HealthBar
 
+
+
 #Referance to player
 var player = preload("res://Player/player.tscn")
 
@@ -68,7 +70,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	
 #	This allows for the imp to be damaged by the player
 	if area. is_in_group("bullet"):
-		health-=2
+		health-= Global.player_stats["damage"]
 		area.queue_free()
 		
 		
@@ -76,7 +78,8 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 			Global.curr_imp -= 1
 			queue_free()
 			
-		
+			Global.points += 2
+			print (Global.points)
 	pass # Replace with function body.
 
 	

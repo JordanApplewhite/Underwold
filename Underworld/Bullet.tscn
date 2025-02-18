@@ -1,14 +1,40 @@
 [gd_scene load_steps=4 format=3 uid="uid://b0fppx087pef3"]
 
 [ext_resource type="Texture2D" uid="uid://bgtkba8pntr3w" path="res://lazer.png" id="1_bxpuf"]
-[ext_resource type="Script" path="res://node_2d.gd" id="2_xpfji"]
+
+[sub_resource type="GDScript" id="GDScript_clbuj"]
+script/source = "extends Area2D
+
+@export var speed = 300
+var speed_mod = 1.0
+var direction = Vector2.UP
+var lifetime = 4
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	await get_tree().create_timer(lifetime).timeout
+	queue_free()
+
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+
+
+## Controls the speed of the projectile.  
+	position += direction * speed * delta * speed_mod
+
+
+	pass
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8q1j"]
 size = Vector2(20, 3.19303)
 
 [node name="Bullet" type="Area2D" groups=["bullet"]]
 position = Vector2(454, 212)
-script = ExtResource("2_xpfji")
+script = SubResource("GDScript_clbuj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_bxpuf")

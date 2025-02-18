@@ -8,12 +8,22 @@ script = ExtResource("1_ylrlg")
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(658, 0)
 
-[node name="imp timer" type="Timer" parent="."]
+[node name="imp timer" type="Timer" parent="." groups=["floater"]]
+wait_time = 2.0
 autostart = true
 
 [node name="floater timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 10.0
+
+[node name="Wave 1" type="Timer" parent="."]
+wait_time = 300.0
+one_shot = true
 autostart = true
+
+[node name="Wave 2" type="Timer" parent="."]
+wait_time = 300.0
+one_shot = true
 
 [connection signal="timeout" from="imp timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="floater timer" to="." method="_on_floater_timer_timeout"]
+[connection signal="timeout" from="Wave 1" to="." method="_on_wave_1_timeout"]

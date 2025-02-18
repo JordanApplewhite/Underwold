@@ -67,17 +67,17 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("bullet"):
-		health-=2
+		health-=Global.player_stats["damage"]
 		area.queue_free()
 		
 		
 		if health <= 0:
 			Global.curr_floater -= 1
 			queue_free()
-			
+			Global.points += 5
+			print (Global.points)
 	
 	pass # Replace with function body.
-	
 
 
 func shoot():

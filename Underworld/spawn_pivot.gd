@@ -7,7 +7,8 @@ extends Node2D
 @onready var floater = preload("res://floater.tscn")
 var max_imp = 5
 var max_floater = 3
-
+var imp_can_spawn = true
+var floater_can_spawn = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,10 +19,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	
-	
 	pass
 
-
+#Where floater spawns 
 func spawn_floater():
 	var rand_rot = randf_range(0,360)
 	rotation_degrees = rand_rot
@@ -30,7 +30,7 @@ func spawn_floater():
 	
 	get_tree().get_root().add_child(new_floater)
 
-
+#Where imp spawns
 func spawn_imp():
 
 	
@@ -42,7 +42,7 @@ func spawn_imp():
 	
 	get_tree().get_root().add_child(new_imp)
 
-
+#Imp Spawn timer
 func _on_timer_timeout() -> void:
 	if Global.curr_imp < max_imp:
 		spawn_imp()
@@ -54,13 +54,8 @@ func _on_timer_timeout() -> void:
 		pass # Replace with function body.
 	
 	pass # Replace with function body.
-	
-	
-	
-	
-	
 
-
+#Floater spawn timer
 func _on_floater_timer_timeout() -> void:
 	
 	if Global.curr_floater < max_floater:
@@ -72,5 +67,12 @@ func _on_floater_timer_timeout() -> void:
 		print("Max floater")
 		pass # Replace with function body.
 	
+	
+	pass # Replace with function body.
+
+
+func _on_wave_1_timeout() -> void:
+	$"Wave 2".start()
+	$"floater timer".start()
 	
 	pass # Replace with function body.

@@ -155,12 +155,12 @@ metadata/graph_offset = Vector2(366, 142)
 [sub_resource type="Resource" id="Resource_vedj2"]
 script = ExtResource("5_wgvyy")
 name = "damaged"
-metadata/graph_offset = Vector2(679, 22)
+metadata/graph_offset = Vector2(739, 22)
 
 [sub_resource type="Resource" id="Resource_s6wic"]
 script = ExtResource("5_wgvyy")
 name = "death"
-metadata/graph_offset = Vector2(846, 22)
+metadata/graph_offset = Vector2(886, 22)
 
 [sub_resource type="Resource" id="Resource_q2k60"]
 script = ExtResource("5_wgvyy")
@@ -268,6 +268,7 @@ radius = 57.0351
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_ihri8")
+health = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2.5, -1.25)
@@ -304,5 +305,6 @@ autostart = true
 shape = SubResource("CircleShape2D_mdid4")
 
 [connection signal="timeout" from="Corruption Timer" to="." method="_on_corruption_timer_timeout"]
+[connection signal="updated" from="StateMachinePlayer" to="." method="_on_state_machine_player_updated"]
 [connection signal="timeout" from="Decay timer" to="." method="_on_decay_timer_timeout"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
