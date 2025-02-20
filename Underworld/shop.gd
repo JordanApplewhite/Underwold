@@ -32,6 +32,21 @@ func _on_damage_up_2_pressed() -> void:
 	pass # Replace with function body.
 
 
+
+
 func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()
+	pass # Replace with function body.
+
+
+func _on_health_up_1_pressed() -> void:
+	Global.player_stats["max_health"] +=25
+	$"Health Up 1".text = "Health Up 1 (Bought)"
+	$"Health Up 1".disabled
+	pass # Replace with function body.
+
+func _on_health_up_2_pressed() -> void:
+	Global.player_stats["max_health"] += 25
+	$"Health Up 2".text = "Health Up 2 (Bought)"
+	$"Health Up 2".disabled
 	pass # Replace with function body.

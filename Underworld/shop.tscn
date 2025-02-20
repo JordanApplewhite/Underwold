@@ -10,6 +10,7 @@ offset_left = 500.0
 offset_top = 577.0
 offset_right = 612.0
 offset_bottom = 621.0
+action_mode = 0
 text = "TryAgain
 "
 
@@ -31,6 +32,26 @@ action_mode = 0
 text = "Damage Up 2  (60)
 "
 
+[node name="Health Up 1" type="Button" parent="."]
+offset_left = 254.0
+offset_right = 440.0
+offset_bottom = 51.0
+action_mode = 0
+text = "Health Up 1 (30)
+"
+
+[node name="Health Up 2" type="Button" parent="."]
+offset_left = 255.0
+offset_top = 53.0
+offset_right = 429.0
+offset_bottom = 107.0
+action_mode = 0
+text = "Health Up 2
+
+"
+
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Damage Up 1" to="." method="_on_damage_up_1_pressed"]
 [connection signal="pressed" from="Damage Up 2" to="." method="_on_damage_up_2_pressed"]
+[connection signal="pressed" from="Health Up 1" to="." method="_on_health_up_1_pressed"]
+[connection signal="pressed" from="Health Up 2" to="." method="_on_health_up_2_pressed"]

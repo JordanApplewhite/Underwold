@@ -23,11 +23,15 @@ position = Vector2(403.929, -11.2372)
 [node name="Player" parent="." instance=ExtResource("2_iawxq")]
 position = Vector2(-131.986, -243.231)
 
-[node name="Spawn pivot" parent="." instance=ExtResource("4_7dwcn")]
+[node name="Spawn pivot" parent="." node_paths=PackedStringArray("spawn_container") instance=ExtResource("4_7dwcn")]
 position = Vector2(6.20068, 9.06227)
+spawn_container = NodePath("../Spawn Point")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_jqch7")
 
 [node name="Floater" parent="." instance=ExtResource("6_besse")]
+visible = true
 position = Vector2(447.334, 174.358)
+
+[node name="Spawn Point" type="Node2D" parent="."]

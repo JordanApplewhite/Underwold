@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var speed = 300
+var damage = 5
 var speed_mod = 1.0
 var direction = Vector2.UP
 var lifetime = 4

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bvs343fppyhsp" path="res://images__1_-removebg-preview.png" id="1_gfo2p"]
 [ext_resource type="Script" path="res://floater_bullet.gd" id="1_u446j"]
 
-[node name="Floater bullet" type="Area2D" groups=["floater bullet"]]
+[node name="Floater bullet" type="Area2D" groups=["enemy bullet"]]
 script = ExtResource("1_u446j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

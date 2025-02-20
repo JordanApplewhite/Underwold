@@ -6,7 +6,8 @@ var accel = 7
 @export var knockback: float = 300
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 @onready var health_bar: ProgressBar = $HealthBar
-
+var type = "imp"
+var damage = 2
 
 
 #Referance to player
@@ -28,7 +29,7 @@ pass
 
 func _process(delta: float) -> void:
 #	moves to the player
-	if player:
+	if is_instance_valid(player):
 	
 		var playerpos= player.global_position
 		#
@@ -45,7 +46,8 @@ pass
 func _physics_process(delta: float) -> void:
 	var direction = Vector3()
 		
-	nav.target_position=player.global_position
+	if is_instance_valid(player):
+		nav.target_position=player.global_position
 
 	var curr_nav_position = global_position
 	var next_nav_position = nav.get_next_path_position()

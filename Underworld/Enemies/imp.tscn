@@ -11,7 +11,7 @@ load_path = "res://.godot/imported/icon.svg-af9b032d21e725455ba955a6c2fe2073.cte
 [sub_resource type="CircleShape2D" id="CircleShape2D_2edoy"]
 radius = 25.0799
 
-[node name="Imp" type="CharacterBody2D" groups=["imp"]]
+[node name="Imp" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_2br17")

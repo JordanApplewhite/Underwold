@@ -9,7 +9,7 @@ var max_imp = 5
 var max_floater = 3
 var imp_can_spawn = true
 var floater_can_spawn = true
-
+@export var spawn_container : Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -28,7 +28,7 @@ func spawn_floater():
 	var new_floater = floater.instantiate()
 	new_floater.global_position = $Marker2D.global_position
 	
-	get_tree().get_root().add_child(new_floater)
+	spawn_container.add_child(new_floater)
 
 #Where imp spawns
 func spawn_imp():
@@ -40,7 +40,7 @@ func spawn_imp():
 	var new_imp = imp.instantiate()
 	new_imp.global_position = $Marker2D.global_position
 	
-	get_tree().get_root().add_child(new_imp)
+	spawn_container.add_child(new_imp)
 
 #Imp Spawn timer
 func _on_timer_timeout() -> void:

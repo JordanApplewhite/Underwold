@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var smp: Node = $StateMachinePlayer
 
 @export var speed = 300.0
 
@@ -7,7 +8,7 @@ extends CharacterBody2D
 
 @export var bullet= preload("res://Bullet.tscn")
 
-@export var corrupt_score = 0
+var corrupt_score = Global.player_stats["corruption_base"]
 
 var mouse_pos = Vector2.ZERO
 
@@ -16,7 +17,7 @@ var curr_state = "idle"
 var decaying = false
 
 func _ready() -> void:
-	
+	Global.player_stats["health"] = health
 	Global.player = self
 pass
 
@@ -28,6 +29,7 @@ pass
 
 
 func _physics_process(delta):
+	print(Global.player_stats["health"])
 	get_input()
 	move_and_slide()
 	
@@ -35,13 +37,12 @@ func _physics_process(delta):
 pass
 
 func _process(delta: float) -> void:
-	#match curr_state:
-		#"death":
-			#death()
+	match curr_state:
+		"death":
+			death()
 		
 	decay()
 	slow()
-	death()
 	pass
 	
 	
@@ -104,6 +105,9 @@ func death():
 		Global.player_active = false
 pass
 
+func damaged():
+	$Invulnerable.start()
+	
 
 func _on_decay_timer_timeout() -> void:
 	if decaying: 
@@ -112,13 +116,21 @@ func _on_decay_timer_timeout() -> void:
 	pass # Replace with function body.
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	if area. is_in_group("floater bullet"):
-		health-=2
+	if area.is_in_group("enemy bullet"):
+		Global.player_stats["health"] -= area.damage
 		area.queue_free()
+		smp.set_trigger("damaged")
 	
 	pass # Replace with function body.
 
 
 func _on_state_machine_player_updated(state: Variant, delta: Variant) -> void:
 	curr_state = state
+	pass # Replace with function body.
+
+
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		Global.player_stats["health"] -= body.damage
+		smp.set_trigger("damaged")
 	pass # Replace with function body.
