@@ -9,6 +9,7 @@ var accel = 7
 var type = "imp"
 var damage = 2
 
+var can_damage = true
 
 #Referance to player
 var player = preload("res://Player/player.tscn")
@@ -18,7 +19,7 @@ var player = preload("res://Player/player.tscn")
 func _ready() -> void:
 #	This rotates the imp fixes the imps rotation to face the player
 	
-	$Sprite2D.rotation_degrees += 90
+	
 	#	Gets the player group 
 	player = get_tree().get_nodes_in_group("player")[0]
 #	Increase imp count
@@ -34,7 +35,7 @@ func _process(delta: float) -> void:
 		var playerpos= player.global_position
 		#
 #		This makes the imp face the player
-		$Sprite2D.look_at(playerpos)
+		
 		health_bar.value = health
 		
 		
@@ -74,7 +75,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area. is_in_group("bullet"):
 		health-= Global.player_stats["damage"]
 		area.queue_free()
-		
+		Global.player_stats["health"] += Global.player_stats["lifesteal"]
 		
 		if health <= 0:
 			Global.curr_imp -= 1
@@ -82,6 +83,16 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 			
 			Global.points += 2
 			print (Global.points)
+			Global.player_stats["health"] += Global.player_stats["lifesteal"]
+			
+	if area. is_in_group("player") and can_damage:
+		can_damage = false
+		$"Damage area".queue_free()
 	pass # Replace with function body.
 
+
+func _on_damage_rate_timeout() -> void:
+	can_damage=true
+	$"Damage area"
 	
+	pass # Replace with function body.

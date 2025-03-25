@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2pcnim4qffs3"]
+
+[ext_resource type="Script" path="res://enemy_hurtbox.gd" id="1_nb0et"]
+
+[node name="Enemy hurtbox" type="Area2D"]
+script = ExtResource("1_nb0et")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

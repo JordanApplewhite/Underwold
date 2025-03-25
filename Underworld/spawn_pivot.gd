@@ -4,7 +4,7 @@ extends Node2D
 
 #This references the asteroids for this code to work
 @onready var  imp = preload("res://Enemies/imp.tscn")
-@onready var floater = preload("res://floater.tscn")
+@onready var floater = preload("res://Enemies/floater.tscn")
 var max_imp = 5
 var max_floater = 3
 var imp_can_spawn = true

@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dotwo02r1414u"]
+[gd_scene load_steps=7 format=3 uid="uid://dotwo02r1414u"]
 
 [ext_resource type="Texture2D" uid="uid://deiecm7n4otm1" path="res://Background/Big-Hell-Map-1024x1024(cropped).jpg" id="1_2qqhq"]
 [ext_resource type="PackedScene" uid="uid://b8d5cn8t566tk" path="res://Player/player.tscn" id="2_iawxq"]
 [ext_resource type="PackedScene" uid="uid://cgxa3hc5spt7k" path="res://Enemies/imp.tscn" id="3_mmtg1"]
 [ext_resource type="PackedScene" uid="uid://c3adhganel5dy" path="res://spawn_pivot.tscn" id="4_7dwcn"]
 [ext_resource type="PackedScene" uid="uid://bu4vcjh78hacb" path="res://Enemies/floater.tscn" id="6_besse"]
-[ext_resource type="PackedScene" uid="uid://cbnmn3h52b032" path="res://hud.tscn" id="6_ymlhr"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jqch7"]
 vertices = PackedVector2Array(1627.82, -1638.3, 1616.38, 1543.15, -1914.81, 1501.33, -1896.31, -1662.82)
@@ -34,5 +33,3 @@ navigation_polygon = SubResource("NavigationPolygon_jqch7")
 position = Vector2(447.334, 174.358)
 
 [node name="Spawn Point" type="Node2D" parent="."]
-
-[node name="HUD" parent="." instance=ExtResource("6_ymlhr")]

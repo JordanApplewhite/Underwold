@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var health = 10
 @export var speed = 50
 var accel = 7
+var can_damage = true
 @export var knockback: float = 300
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 @onready var healthbar: ProgressBar = $healthbar
@@ -10,14 +11,14 @@ var accel = 7
 
 #Referance to player
 var player = preload("res://Player/player.tscn")
-var bullet = preload("res://floater_bullet.tscn")
+var bullet = preload("res://Enemies/floater_bullet.tscn")
 
 
 
 func _ready() -> void:
 #	This rotates the imp fixes the imps rotation to face the player
 	
-	$Sprite2D.rotation_degrees += 90
+
 	#	Gets the player group 
 	player = get_tree().get_nodes_in_group("player")[0]
 #	Increase imp count
@@ -34,7 +35,7 @@ func _process(delta: float) -> void:
 		var playerpos= player.global_position
 		#
 #		This makes the imp face the player
-		$Sprite2D.look_at(playerpos)
+		
 		healthbar.value = health
 
 
@@ -76,6 +77,8 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 			queue_free()
 			Global.points += 5
 			print (Global.points)
+			Global.player_stats["health"] += Global.player_stats["lifesteal"]
+			
 	
 	pass # Replace with function body.
 
@@ -100,4 +103,17 @@ func shoot():
 
 func _on_fire_rate_timeout() -> void:
 	shoot()
+	pass # Replace with function body.
+
+
+func _on_damage_area_area_entered(area: Area2D) -> void:
+	if area. is_in_group("player") and can_damage:
+		can_damage = false
+		
+	pass # Replace with function body.
+
+
+func _on_damage_rate_timeout() -> void:
+	can_damage = true
+	pass # Replace with function body.
 	pass # Replace with function body.

@@ -4,7 +4,9 @@ extends CharacterBody2D
 
 @export var speed = 300.0
 
-@export var health = 100
+var health = Global.player_stats["health"]
+
+var max_health = Global.player_stats["max_health"]
 
 @export var bullet= preload("res://Bullet.tscn")
 
@@ -15,6 +17,7 @@ var mouse_pos = Vector2.ZERO
 var curr_state = "idle"
 
 var decaying = false
+var can_fire = true
 
 func _ready() -> void:
 	Global.player_stats["health"] = health
@@ -29,7 +32,7 @@ pass
 
 
 func _physics_process(delta):
-	print(Global.player_stats["health"])
+	
 	get_input()
 	move_and_slide()
 	
@@ -37,14 +40,15 @@ func _physics_process(delta):
 pass
 
 func _process(delta: float) -> void:
+	print(Global.player_stats["health"])
 	match curr_state:
 		"death":
 			death()
 		
 	decay()
 	slow()
+	$"Fire rate".wait_time = Global.player_stats["fire_rate"]
 	pass
-	
 	
 
 	
@@ -52,7 +56,7 @@ func _process(delta: float) -> void:
 	
 #Allows player to shoot 
 func shoot():
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and can_fire:
 		var new_bullet = bullet.instantiate()
 		var target_vec = mouse_pos-global_position
 		
@@ -65,6 +69,8 @@ func shoot():
 		get_tree().get_root().add_child(new_bullet)
 		target_vec= target_vec.normalized()
 		$Pew.play()
+		can_fire = false
+		$"Fire rate".start()
 	pass
 	
 	
@@ -105,8 +111,8 @@ func death():
 		Global.player_active = false
 pass
 
-func damaged():
-	$Invulnerable.start()
+	
+	
 	
 
 func _on_decay_timer_timeout() -> void:
@@ -120,6 +126,11 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		Global.player_stats["health"] -= area.damage
 		area.queue_free()
 		smp.set_trigger("damaged")
+	#
+	#if area.is_in_group("enemy damage"):
+		#Global.player_stats["health"] -= area.damage
+		#smp.set_trigger("damaged")
+
 	
 	pass # Replace with function body.
 
@@ -129,8 +140,6 @@ func _on_state_machine_player_updated(state: Variant, delta: Variant) -> void:
 	pass # Replace with function body.
 
 
-func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemy"):
-		Global.player_stats["health"] -= body.damage
-		smp.set_trigger("damaged")
+func _on_fire_rate_timeout() -> void:
+	can_fire = true
 	pass # Replace with function body.

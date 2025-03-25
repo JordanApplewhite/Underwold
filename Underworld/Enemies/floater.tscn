@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bu4vcjh78hacb"]
+[gd_scene load_steps=8 format=3 uid="uid://bu4vcjh78hacb"]
 
-[ext_resource type="Script" path="res://floater.gd" id="1_6a7j5"]
-[ext_resource type="Texture2D" uid="uid://c5mep3p8hq01g" path="res://images-removebg-preview.png" id="1_gar0m"]
+[ext_resource type="Script" path="res://Enemies/floater.gd" id="1_oypxu"]
+[ext_resource type="Texture2D" uid="uid://c5mep3p8hq01g" path="res://images-removebg-preview.png" id="2_nof8b"]
+[ext_resource type="Script" path="res://hurtbox.gd" id="3_07xs3"]
+[ext_resource type="PackedScene" uid="uid://b2pcnim4qffs3" path="res://Enemies/enemy_hurtbox.tscn" id="4_qi2at"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qq37f"]
 size = Vector2(40.3828, 36.6875)
@@ -9,11 +11,13 @@ size = Vector2(40.3828, 36.6875)
 [sub_resource type="CircleShape2D" id="CircleShape2D_76gsw"]
 radius = 22.3607
 
-[node name="Floater" type="CharacterBody2D"]
-visible = false
+[sub_resource type="CircleShape2D" id="CircleShape2D_d8k08"]
+radius = 25.318
+
+[node name="Floater" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 6
-script = ExtResource("1_6a7j5")
+script = ExtResource("1_oypxu")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qq37f")
@@ -21,9 +25,10 @@ shape = SubResource("RectangleShape2D_qq37f")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-9.53674e-07, 9.53674e-07)
 scale = Vector2(0.174479, 0.174479)
-texture = ExtResource("1_gar0m")
+texture = ExtResource("2_nof8b")
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="." groups=["enemy damage"]]
+script = ExtResource("3_07xs3")
 
 [node name="Hitbox" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_76gsw")
@@ -46,6 +51,12 @@ max_value = 10.0
 [node name="Fire rate" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="Enemy hurtbox" parent="." instance=ExtResource("4_qi2at")]
+attack_speed = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy hurtbox"]
+shape = SubResource("CircleShape2D_d8k08")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

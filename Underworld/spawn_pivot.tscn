@@ -6,7 +6,7 @@
 script = ExtResource("1_ylrlg")
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(658, 0)
+position = Vector2(1143, 4)
 
 [node name="imp timer" type="Timer" parent="." groups=["floater"]]
 wait_time = 2.0

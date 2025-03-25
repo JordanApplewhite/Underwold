@@ -2,6 +2,7 @@ extends Node
 
 
 @export var scene: String
+var main_scene = "Main"
 var shop_scene = "shop"
 @export var fade_out_speed: float = 1.0
 @export var fade_in_speed: float = 1.0
@@ -20,18 +21,21 @@ var shop_scene = "shop"
 @onready var fade_in_options = SceneManager.create_options(fade_in_speed, fade_in_pattern, fade_in_smoothness, fade_in_inverted)
 @onready var general_options = SceneManager.create_general_options(color, timeout, clickable, add_to_back)
 
-
+#Player stats
 var player = null
 var player_active = true
 var curr_imp = 0
 var curr_floater = 0
 var points = 0
+
 var player_stats = {
 	"damage": 2,
 	"max_health": 100,
 	"health": 100,
 	"corruption_max":100,
 	"corruption_base":0,
+	"lifesteal": 0,
+	"fire_rate": .5,
 }
 
 func _ready() -> void:
@@ -48,6 +52,7 @@ func _process(delta: float) -> void:
 	if player_stats["health"] <= 0:
 		SceneManager.change_scene(shop_scene, fade_out_options, fade_in_options, general_options)
 		player_stats["health"] = 100
+	
 
 
 func instance_node(node, location , parent):

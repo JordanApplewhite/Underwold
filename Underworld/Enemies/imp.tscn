@@ -1,15 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgxa3hc5spt7k"]
+[gd_scene load_steps=8 format=3 uid="uid://cgxa3hc5spt7k"]
 
 [ext_resource type="Script" path="res://Enemies/imp.gd" id="1_2br17"]
+[ext_resource type="Script" path="res://Enemies/hitbox.gd" id="2_cmybl"]
+[ext_resource type="Texture2D" uid="uid://dmi4u7b2anr7y" path="res://Enemies/images__2_-removebg-preview.png" id="2_fwhep"]
+[ext_resource type="PackedScene" uid="uid://b2pcnim4qffs3" path="res://Enemies/enemy_hurtbox.tscn" id="4_wng2a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ea7c"]
 size = Vector2(36.5, 34)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6lyob"]
-load_path = "res://.godot/imported/icon.svg-af9b032d21e725455ba955a6c2fe2073.ctex"
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_2edoy"]
 radius = 25.0799
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ve6xp"]
+radius = 24.0208
 
 [node name="Imp" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
@@ -20,21 +23,24 @@ speed = 150
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(-0.25, 0)
 shape = SubResource("RectangleShape2D_3ea7c")
+debug_color = Color(0.975374, 0, 0.419875, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.257813, 0.257813)
-texture = SubResource("CompressedTexture2D_6lyob")
+texture = ExtResource("2_fwhep")
 
 [node name="knocktimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." groups=["enemy damage"]]
 position = Vector2(38, 11)
+script = ExtResource("2_cmybl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-38, -11)
 shape = SubResource("CircleShape2D_2edoy")
+debug_color = Color(0.74843, 0.460779, 1.92523e-07, 0.42)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
@@ -50,5 +56,15 @@ offset_bottom = 47.0
 max_value = 5.0
 fill_mode = 1
 
+[node name="Damage rate" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Enemy hurtbox" parent="." instance=ExtResource("4_wng2a")]
+attack_speed = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy hurtbox"]
+shape = SubResource("CircleShape2D_ve6xp")
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="timeout" from="Damage rate" to="." method="_on_damage_rate_timeout"]
