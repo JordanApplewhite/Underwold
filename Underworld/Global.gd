@@ -34,8 +34,10 @@ var player_stats = {
 	"health": 100,
 	"corruption_max":100,
 	"corruption_base":0,
+	"max_corruption":100,
 	"lifesteal": 0,
 	"fire_rate": .5,
+	"speed":250,
 }
 
 func _ready() -> void:

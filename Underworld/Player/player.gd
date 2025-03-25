@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var smp: Node = $StateMachinePlayer
 
-@export var speed = 300.0
+var speed = Global.player_stats["speed"]
 
 var health = Global.player_stats["health"]
 
@@ -40,7 +40,6 @@ func _physics_process(delta):
 pass
 
 func _process(delta: float) -> void:
-	print(Global.player_stats["health"])
 	match curr_state:
 		"death":
 			death()
@@ -83,10 +82,11 @@ func _input(event: InputEvent) -> void:
 		shoot()
 
 func _on_corruption_timer_timeout() -> void:
-	if corrupt_score <= 100:
+	if corrupt_score <= Global.player_stats["max_corruption"]:
 		corrupt_score += 3
+		print(corrupt_score)
 		
-	else: corrupt_score >= 100
+	else: corrupt_score >= Global.player_stats["max_corruption"]
 	corrupt_score += 0
 	pass # Replace with function body.
 	

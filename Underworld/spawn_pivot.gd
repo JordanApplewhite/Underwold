@@ -58,12 +58,12 @@ func _on_timer_timeout() -> void:
 #Floater spawn timer
 func _on_floater_timer_timeout() -> void:
 	
-	if Global.curr_floater < max_floater:
+	if Global.curr_floater < max_floater and $"Wave 2":
 		spawn_floater()
 		print("floater spawned")
 		
 	elif Global.curr_floater>=max_floater:
-		#$Timer.stop()
+		$"floater timer".stop()
 		print("Max floater")
 		pass # Replace with function body.
 	
