@@ -10,3 +10,7 @@ offset_left = 1016.0
 offset_right = 1152.0
 offset_bottom = 38.0
 text = "Points: "
+
+[node name="Health" type="Label" parent="."]
+offset_right = 294.0
+offset_bottom = 29.0

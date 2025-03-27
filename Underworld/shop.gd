@@ -92,3 +92,17 @@ func _on_lifesteal_2_pressed() -> void:
 	$"Lifesteal 2".text = "Health on kill 2 (Bought)"
 	$"Lifesteal 2".disabled
 	pass # Replace with function body.
+
+
+func _on_corruption_resistance_1_pressed() -> void:
+	Global.player_stats["corruption_max"] += 2
+	$"Corruption Resistance 1".text = "Corruption Resistance 1 (Bought)"
+	$"Corruption Resistance 1".disabled
+	pass # Replace with function body.
+
+
+func _on_corruption_resistance_2_pressed() -> void:
+	Global.player_stats["corruption_max"] += 4
+	$"Corruption Resistance 2".text = "Corruption Resistance 1 (Bought)"
+	$"Corruption Resistance 2".disabled
+	pass # Replace with function body.

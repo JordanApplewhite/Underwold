@@ -126,11 +126,6 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		Global.player_stats["health"] -= area.damage
 		area.queue_free()
 		smp.set_trigger("damaged")
-	#
-	#if area.is_in_group("enemy damage"):
-		#Global.player_stats["health"] -= area.damage
-		#smp.set_trigger("damaged")
-
 	
 	pass # Replace with function body.
 

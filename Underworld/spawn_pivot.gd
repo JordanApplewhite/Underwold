@@ -10,6 +10,10 @@ var max_floater = 3
 var imp_can_spawn = true
 var floater_can_spawn = true
 @export var spawn_container : Node2D
+
+var wave_1 = true
+var wave_2 = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -58,7 +62,7 @@ func _on_timer_timeout() -> void:
 #Floater spawn timer
 func _on_floater_timer_timeout() -> void:
 	
-	if Global.curr_floater < max_floater and $"Wave 2":
+	if Global.curr_floater < max_floater :
 		spawn_floater()
 		print("floater spawned")
 		
@@ -70,9 +74,15 @@ func _on_floater_timer_timeout() -> void:
 	
 	pass # Replace with function body.
 
-
 func _on_wave_1_timeout() -> void:
+	wave_2 = true
+	
 	$"Wave 2".start()
+	
+	max_imp += 8
+	
 	$"floater timer".start()
+	
+	print("wave 2 start")
 	
 	pass # Replace with function body.

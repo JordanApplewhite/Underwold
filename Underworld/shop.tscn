@@ -65,6 +65,23 @@ offset_right = 639.0
 offset_bottom = 112.0
 text = "Health on kill 2 (200)"
 
+[node name="Corruption Resistance 1" type="Button" parent="."]
+offset_left = 652.0
+offset_top = 2.0
+offset_right = 861.0
+offset_bottom = 52.0
+text = "Max_corruption 1 (40)
+"
+
+[node name="Corruption Resistance 2" type="Button" parent="."]
+offset_left = 653.0
+offset_top = 57.0
+offset_right = 862.0
+offset_bottom = 107.0
+action_mode = 0
+text = "Max corruption 2 (40)
+"
+
 [connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Damage Up 1" to="." method="_on_damage_up_1_pressed"]
 [connection signal="pressed" from="Damage Up 2" to="." method="_on_damage_up_2_pressed"]
@@ -72,3 +89,5 @@ text = "Health on kill 2 (200)"
 [connection signal="pressed" from="Health Up 2" to="." method="_on_health_up_2_pressed"]
 [connection signal="pressed" from="Lifesteal 1" to="." method="_on_lifesteal_1_pressed"]
 [connection signal="pressed" from="Lifesteal 2" to="." method="_on_lifesteal_2_pressed"]
+[connection signal="pressed" from="Corruption Resistance 1" to="." method="_on_corruption_resistance_1_pressed"]
+[connection signal="pressed" from="Corruption Resistance 2" to="." method="_on_corruption_resistance_2_pressed"]
