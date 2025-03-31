@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvic1so1r1b8p"]
+
+[ext_resource type="Script" path="res://character_body_2d.gd" id="1_5w570"]
+[ext_resource type="Texture2D" uid="uid://dqmlnnyda86pr" path="res://Enemies/greg-dunne-chara-idle-1-removebg-preview.png" id="2_ig72h"]
+[ext_resource type="PackedScene" uid="uid://ba5k5ig2s480f" path="res://sage_healing_area.tscn" id="3_7cdya"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fy7g3"]
+size = Vector2(44, 53)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rkfsy"]
+radius = 36.0139
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rkevt"]
+radius = 55.0364
+
+[node name="Sage" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 6
+script = ExtResource("1_5w570")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(4, -6.5)
+shape = SubResource("RectangleShape2D_fy7g3")
+debug_color = Color(0.982939, 0.982179, 0.981854, 0.42)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Hitbox" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, -3)
+shape = SubResource("CircleShape2D_rkfsy")
+debug_color = Color(0.808357, 0.00223904, 0.989974, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(0.1485, 0.1485)
+texture = ExtResource("2_ig72h")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 35.57
+neighbor_distance = 501.4
+max_neighbors = 30
+max_speed = 300.0
+avoidance_layers = 2
+avoidance_mask = 6
+debug_use_custom = true
+
+[node name="Sage healing area" parent="." instance=ExtResource("3_7cdya")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sage healing area"]
+position = Vector2(4, -3)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_rkevt")
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

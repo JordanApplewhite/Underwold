@@ -26,6 +26,7 @@ var player = null
 var player_active = true
 var curr_imp = 0
 var curr_floater = 0
+var curr_sage = 0
 var points = 0
 
 var player_stats = {
@@ -37,8 +38,20 @@ var player_stats = {
 	"max_corruption":100,
 	"lifesteal": 0,
 	"fire_rate": .5,
-	"speed":250,
+	"speed":200,
 }
+
+var imp_stats = {
+	"health" : 5,
+	"max_health": 5,
+}
+
+var floater_states = {
+	"health" : 10,
+	"max_health": 10,
+}
+
+
 
 func _ready() -> void:
 	var fade_in_first_scene_options = SceneManager.create_options(1, "fade")

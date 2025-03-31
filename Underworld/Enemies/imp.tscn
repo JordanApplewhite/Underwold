@@ -18,7 +18,7 @@ radius = 24.0208
 collision_layer = 2
 collision_mask = 6
 script = ExtResource("1_2br17")
-speed = 150
+speed = 80
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(-0.25, 0)
@@ -28,10 +28,6 @@ debug_color = Color(0.975374, 0, 0.419875, 0.42)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.257813, 0.257813)
 texture = ExtResource("2_fwhep")
-
-[node name="knocktimer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
 
 [node name="Hitbox" type="Area2D" parent="." groups=["enemy damage"]]
 position = Vector2(38, 11)
@@ -46,6 +42,7 @@ debug_color = Color(0.74843, 0.460779, 1.92523e-07, 0.42)
 avoidance_enabled = true
 radius = 40.0
 max_neighbors = 20
+max_speed = 275.0
 debug_enabled = true
 
 [node name="HealthBar" type="ProgressBar" parent="."]
@@ -56,9 +53,6 @@ offset_bottom = 47.0
 max_value = 5.0
 fill_mode = 1
 
-[node name="Damage rate" type="Timer" parent="."]
-wait_time = 0.5
-
 [node name="Enemy hurtbox" parent="." instance=ExtResource("4_wng2a")]
 attack_speed = 1
 
@@ -67,4 +61,3 @@ shape = SubResource("CircleShape2D_ve6xp")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
-[connection signal="timeout" from="Damage rate" to="." method="_on_damage_rate_timeout"]

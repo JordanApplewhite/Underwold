@@ -1,47 +1,29 @@
 extends CharacterBody2D
 
-@export var health = 5
-@export var speed = 0
-var accel = 12
-@export var knockback: float = 300
-@onready var nav: NavigationAgent2D = $NavigationAgent2D
-@onready var health_bar: ProgressBar = $HealthBar
-var type = "imp"
-var damage = 2
 
-var can_damage = true
+@export var health = 5
+@export var speed = 100
+var accel = 7
+@onready var nav: NavigationAgent2D = $NavigationAgent2D
 
 #Referance to player
 var player = preload("res://Player/player.tscn")
+var imp = preload("res://Enemies/imp.tscn")
+var floater = preload("res://Enemies/floater.tscn")
 
 
 
 func _ready() -> void:
-#	This rotates the imp fixes the imps rotation to face the player
-	
-	
-	#	Gets the player group 
 	player = get_tree().get_nodes_in_group("player")[0]
-	
-#	Increase imp count
-	Global.curr_imp += 1
+	Global.curr_sage += 1
 pass
 
-
-
 func _process(delta: float) -> void:
+	
 #	moves to the player
-	if is_instance_valid(player):
+	if player:
 	
 		var playerpos= player.global_position
-		#
-#		This makes the imp face the player
-		
-		health_bar.value = health
-		
-		
-		
-		
 
 pass
 
@@ -70,18 +52,18 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	move_and_slide()
 	pass # Replace with function body.
 
-func _on_hitbox_area_entered(area: Area2D) -> void:
-	
-#	This allows for the imp to be damaged by the player
-	if area. is_in_group("bullet"):
-		health-= Global.player_stats["damage"]
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("bullet"):
+		health-=Global.player_stats["damage"]
 		area.queue_free()
-		Global.player_stats["health"] += Global.player_stats["lifesteal"]
+		
 		
 		if health <= 0:
-			Global.curr_imp -= 1
+			Global.curr_floater -= 1
 			queue_free()
-			
-			Global.points += 2
+			Global.points += 3
 			print (Global.points)
 			Global.player_stats["health"] += Global.player_stats["lifesteal"]
+			
+	
+	pass # Replace with function body.

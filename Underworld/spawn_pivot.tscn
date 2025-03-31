@@ -24,6 +24,10 @@ autostart = true
 wait_time = 300.0
 one_shot = true
 
+[node name="Sage timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [connection signal="timeout" from="imp timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="floater timer" to="." method="_on_floater_timer_timeout"]
 [connection signal="timeout" from="Wave 1" to="." method="_on_wave_1_timeout"]

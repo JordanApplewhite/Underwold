@@ -58,9 +58,6 @@ func _on_damage_up_2_pressed() -> void:
 	$"Damage Up 2".disabled
 	pass # Replace with function body.
 
-
-
-
 func _on_restart_pressed() -> void:
 	SceneManager.change_scene(main_scene, fade_out_options, fade_in_options, general_options)
 	Global.player_stats["health"] = Global.player_stats["max_health"]
@@ -103,6 +100,6 @@ func _on_corruption_resistance_1_pressed() -> void:
 
 func _on_corruption_resistance_2_pressed() -> void:
 	Global.player_stats["corruption_max"] += 4
-	$"Corruption Resistance 2".text = "Corruption Resistance 1 (Bought)"
+	$"Corruption Resistance 2".text = "Corruption Resistance 2 (Bought)"
 	$"Corruption Resistance 2".disabled
 	pass # Replace with function body.

@@ -5,8 +5,10 @@ extends Node2D
 #This references the asteroids for this code to work
 @onready var  imp = preload("res://Enemies/imp.tscn")
 @onready var floater = preload("res://Enemies/floater.tscn")
+@onready var sage = preload("res://sage.tscn")
 var max_imp = 5
 var max_floater = 3
+var max_sage = 2
 var imp_can_spawn = true
 var floater_can_spawn = true
 @export var spawn_container : Node2D
@@ -45,6 +47,14 @@ func spawn_imp():
 	new_imp.global_position = $Marker2D.global_position
 	
 	spawn_container.add_child(new_imp)
+
+func spawn_sage():
+	var rand_rot = randf_range(0,360)
+	rotation_degrees = rand_rot
+	var new_sage = sage.instantiate()
+	new_sage.global_position = $Marker2D.global_position
+	
+	spawn_container.add_child(new_sage)
 
 #Imp Spawn timer
 func _on_timer_timeout() -> void:

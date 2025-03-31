@@ -33,8 +33,6 @@ func _process(delta: float) -> void:
 	if player:
 	
 		var playerpos= player.global_position
-		#
-#		This makes the imp face the player
 		
 		healthbar.value = health
 
@@ -55,7 +53,7 @@ func _physics_process(delta: float) -> void:
 		
 	else: 
 		_on_navigation_agent_2d_velocity_computed(new_velocity)
-	
+
 pass
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
@@ -64,7 +62,6 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	velocity = safe_velocity
 	move_and_slide()
 	pass # Replace with function body.
-
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("bullet"):
@@ -96,22 +93,16 @@ func shoot():
 		new_bullet.rotation_degrees+=0
 		get_tree().get_root().add_child(new_bullet)
 		target_vec= target_vec.normalized()
-		
-	
-	
-
 
 func _on_fire_rate_timeout() -> void:
 	shoot()
 	pass # Replace with function body.
-
 
 func _on_damage_area_area_entered(area: Area2D) -> void:
 	if area. is_in_group("player") and can_damage:
 		can_damage = false
 		
 	pass # Replace with function body.
-
 
 func _on_damage_rate_timeout() -> void:
 	can_damage = true
