@@ -31,3 +31,4 @@ autostart = true
 [connection signal="timeout" from="imp timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="floater timer" to="." method="_on_floater_timer_timeout"]
 [connection signal="timeout" from="Wave 1" to="." method="_on_wave_1_timeout"]
+[connection signal="timeout" from="Sage timer" to="." method="_on_sage_timer_timeout"]

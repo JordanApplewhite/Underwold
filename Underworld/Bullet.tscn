@@ -34,6 +34,7 @@ size = Vector2(20, 3.19303)
 
 [node name="Bullet" type="Area2D" groups=["bullet"]]
 position = Vector2(454, 212)
+collision_mask = 7
 script = SubResource("GDScript_clbuj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

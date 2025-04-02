@@ -73,7 +73,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 			Global.curr_floater -= 1
 			queue_free()
 			Global.points += 5
-			print (Global.points)
+			
 			Global.player_stats["health"] += Global.player_stats["lifesteal"]
 			
 	

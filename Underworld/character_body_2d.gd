@@ -5,8 +5,7 @@ extends CharacterBody2D
 @export var speed = 100
 var accel = 7
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
-
-#Referance to player
+var touching = false
 var player = preload("res://Player/player.tscn")
 var imp = preload("res://Enemies/imp.tscn")
 var floater = preload("res://Enemies/floater.tscn")
@@ -36,7 +35,7 @@ func _physics_process(delta: float) -> void:
 	var curr_nav_position = global_position
 	var next_nav_position = nav.get_next_path_position()
 	var new_velocity = curr_nav_position.direction_to(next_nav_position) * speed 
-	print(new_velocity)
+	
 	if nav.avoidance_enabled:
 		nav.set_velocity(new_velocity)
 		
@@ -52,18 +51,17 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	move_and_slide()
 	pass # Replace with function body.
 
-func _on_hurtbox_area_entered(area: Area2D) -> void:
+func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("bullet"):
 		health-=Global.player_stats["damage"]
 		area.queue_free()
 		
 		
 		if health <= 0:
-			Global.curr_floater -= 1
+			Global.curr_sage -= 1
 			queue_free()
 			Global.points += 3
-			print (Global.points)
 			Global.player_stats["health"] += Global.player_stats["lifesteal"]
 			
-	
+
 	pass # Replace with function body.

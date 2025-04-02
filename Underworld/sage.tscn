@@ -45,11 +45,14 @@ avoidance_layers = 2
 avoidance_mask = 6
 debug_use_custom = true
 
-[node name="Sage healing area" parent="." instance=ExtResource("3_7cdya")]
+[node name="Sage healing area" parent="." groups=["enemy"] instance=ExtResource("3_7cdya")]
+collision_layer = 0
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sage healing area"]
 position = Vector2(4, -3)
 scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_rkevt")
 
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

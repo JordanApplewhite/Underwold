@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 	var curr_nav_position = global_position
 	var next_nav_position = nav.get_next_path_position()
 	var new_velocity = curr_nav_position.direction_to(next_nav_position) * speed 
-	print(new_velocity)
+	
 	if nav.avoidance_enabled:
 		nav.set_velocity(new_velocity)
 		
