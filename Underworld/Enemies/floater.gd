@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var health = 10
+var health = Global.floater_states ["health"]
 @export var speed = 50
 var accel = 7
 var can_damage = true

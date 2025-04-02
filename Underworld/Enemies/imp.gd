@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var health = 5
+var health = Global.imp_stats["health"]
 @export var speed = 0
 var accel = 12
 @export var knockback: float = 300

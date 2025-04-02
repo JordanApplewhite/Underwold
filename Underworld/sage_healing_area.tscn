@@ -6,6 +6,7 @@
 script = ExtResource("1_j7vh2")
 
 [node name="Timer" type="Timer" parent="."]
+autostart = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
