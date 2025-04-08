@@ -7,7 +7,9 @@ extends Node2D
 @onready var floater = preload("res://Enemies/floater.tscn")
 @onready var sage = preload("res://sage.tscn")
 @export var max_floater = 2
+@export_group("Floater")
 @export var floater_container : Node2D
+@export_group("Sage")
 @export var max_sage = 2
 @export var sage_container : Node2D
 @export var spawn_container : Node2D
@@ -59,23 +61,23 @@ func spawn_sage():
 		spawn_container.add_child(new_sage)
 pass 
 #Imp Spawn timer
-func _on_timer_timeout() -> void:
-	if Global.curr_imp < Global.max_imp:
-		spawn_imp()
-		
-		
-	else: 
-		if Global.curr_imp>=Global.max_imp:
-			$"imp timer".stop()
-			print("max imp")
-		pass # Replace with function body.
-	
-	pass # Replace with function body.
-
-#Floater spawn timer
-func _on_floater_timer_timeout() -> void:
-	spawn_floater()
-	pass # Replace with function body.
+#func _on_timer_timeout() -> void:
+	#if Global.curr_imp < Global.max_imp:
+		#spawn_imp()
+		#
+		#
+	#else: 
+		#if Global.curr_imp>=Global.max_imp:
+			#$"imp timer".stop()
+			#print("max imp")
+		#pass # Replace with function body.
+	#
+	#pass # Replace with function body.
+#
+##Floater spawn timer
+#func _on_floater_timer_timeout() -> void:
+	#spawn_floater()
+	#pass # Replace with function body.
 
 
 func _on_wave_1_timeout() -> void:
