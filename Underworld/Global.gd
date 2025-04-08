@@ -25,8 +25,11 @@ var shop_scene = "shop"
 var player = null
 var player_active = true
 var curr_imp = 0
+var max_imp = 5
 var curr_floater = 0
+var max_floater = 2
 var curr_sage = 0
+var max_sage = 1
 var points = 0
 
 var player_stats = {
@@ -37,6 +40,7 @@ var player_stats = {
 	"corruption_base":0,
 	"max_corruption":100,
 	"lifesteal": 0,
+	"lifesteal_max":0,
 	"fire_rate": .5,
 	"speed":200,
 }
@@ -46,7 +50,7 @@ var imp_stats = {
 	"max_health": 5,
 }
 
-var floater_states = {
+var floater_stats = {
 	"health" : 10,
 	"max_health": 10,
 }

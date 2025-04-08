@@ -47,6 +47,7 @@ func _process(delta: float) -> void:
 	decay()
 	slow()
 	$"Fire rate".wait_time = Global.player_stats["fire_rate"]
+	health_limit()
 	pass
 	
 
@@ -84,7 +85,7 @@ func _input(event: InputEvent) -> void:
 func _on_corruption_timer_timeout() -> void:
 	if corrupt_score <= Global.player_stats["max_corruption"]:
 		corrupt_score += 3
-		print(corrupt_score)
+		
 		
 	else: corrupt_score >= Global.player_stats["max_corruption"]
 	corrupt_score += 0
@@ -138,3 +139,12 @@ func _on_state_machine_player_updated(state: Variant, delta: Variant) -> void:
 func _on_fire_rate_timeout() -> void:
 	can_fire = true
 	pass # Replace with function body.
+
+func health_limit():
+	if Global.player_stats["health"] >= Global.player_stats["max_health"]:
+		Global.player_stats["lifesteal"] = 0
+		Global.player_stats["health"] = Global.player_stats["max_health"]
+	elif Global.player_stats["health"] < Global.player_stats["max_health"]:
+		Global.player_stats["lifesteal"] = Global.player_stats["lifesteal_max"]
+		
+pass

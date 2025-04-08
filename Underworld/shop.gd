@@ -79,6 +79,7 @@ func _on_health_up_2_pressed() -> void:
 
 func _on_lifesteal_1_pressed() -> void:
 	Global.player_stats["lifesteal"] += 2
+	Global.player_stats["lifesteal_max"] += 2
 	$"Lifesteal 1".text = "Health on kill 1 (Bought)"
 	$"Lifesteal 1".disabled
 	pass # Replace with function body.
@@ -86,6 +87,7 @@ func _on_lifesteal_1_pressed() -> void:
 
 func _on_lifesteal_2_pressed() -> void:
 	Global.player_stats["lifesteal"] += 2
+	Global.player_stats["lifesteal_max"] += 2
 	$"Lifesteal 2".text = "Health on kill 2 (Bought)"
 	$"Lifesteal 2".disabled
 	pass # Replace with function body.

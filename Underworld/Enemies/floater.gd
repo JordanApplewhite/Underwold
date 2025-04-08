@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health = Global.floater_states ["health"]
+var health = Global.floater_stats ["health"]
 @export var speed = 50
 var accel = 7
 var can_damage = true
@@ -23,6 +23,7 @@ func _ready() -> void:
 	player = get_tree().get_nodes_in_group("player")[0]
 #	Increase imp count
 	Global.curr_floater += 1
+	print(Global.curr_floater)
 pass
 
 
@@ -65,7 +66,7 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("bullet"):
-		health-=Global.player_stats["damage"]
+		health -= Global.player_stats["damage"]
 		area.queue_free()
 		
 		
@@ -96,15 +97,4 @@ func shoot():
 
 func _on_fire_rate_timeout() -> void:
 	shoot()
-	pass # Replace with function body.
-
-func _on_damage_area_area_entered(area: Area2D) -> void:
-	if area. is_in_group("player") and can_damage:
-		can_damage = false
-		
-	pass # Replace with function body.
-
-func _on_damage_rate_timeout() -> void:
-	can_damage = true
-	pass # Replace with function body.
 	pass # Replace with function body.
